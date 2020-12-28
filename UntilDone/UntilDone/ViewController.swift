@@ -12,7 +12,7 @@ class ViewController: UIViewController {
         
         super.viewDidLoad()
         
-        self.title = "Tasks"
+        self.title = "Until Done"
         
         tableView.delegate = self
         tableView.dataSource = self

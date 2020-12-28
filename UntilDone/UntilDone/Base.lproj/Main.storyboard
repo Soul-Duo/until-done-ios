@@ -106,7 +106,7 @@
                             </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="eOe-yh-yNO"/>
-                        <color key="backgroundColor" systemColor="systemBlueColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="eOe-yh-yNO" firstAttribute="trailing" secondItem="aT6-S1-IJ6" secondAttribute="trailing" constant="20" id="NBB-da-vxO"/>
                             <constraint firstItem="aT6-S1-IJ6" firstAttribute="top" secondItem="eOe-yh-yNO" secondAttribute="top" constant="20" id="WRF-d5-WZW"/>
@@ -143,9 +143,6 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
