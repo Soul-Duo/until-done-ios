@@ -54,7 +54,6 @@ class ViewController: UIViewController {
         
         let vc = storyboard?.instantiateViewController(identifier: "entry") as! EntryViewController
         vc.title = "New Task"
-        
         //"update" is a function in EntryViewController
         //Everytime we call update() in EntryVC, the table view needs to reload (refetch tasks saved)
         vc.update = {
@@ -76,7 +75,7 @@ extension ViewController: UITableViewDelegate{
         
         let vc = storyboard?.instantiateViewController(identifier: "task") as! TaskViewController
         vc.title = "New Task"
-        
+        vc.task = tasks[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
     }
 }
