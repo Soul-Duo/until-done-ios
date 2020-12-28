@@ -26,12 +26,42 @@ class ViewController: UIViewController {
         
 
         //Get all current saved tasks
+        updateTasks()
     }
+    
+    func updateTasks(){
+        
+        //removes task array so we don't see duplicates everytime we call updateTasks()
+        tasks.removeAll()
+        
+        guard let count = UserDefaults().value(forKey: "count") as? Int else{
+            return
+        }
+        
+        for x in 0..<count{
+            
+            //if not empty
+            if let task = UserDefaults().value(forKey: "task_\(x+1)") as? String{
+                tasks.append(task)
+            }
+        }
+        
+        tableView.reloadData()
+    }
+    
     
     @IBAction func didTapAdd(){
         
         let vc = storyboard?.instantiateViewController(identifier: "entry") as! EntryViewController
         vc.title = "New Task"
+        
+        //"update" is a function in EntryViewController
+        //Everytime we call update() in EntryVC, the table view needs to reload (refetch tasks saved)
+        vc.update = {
+            DispatchQueue.main.async {
+                self.updateTasks()
+            }
+        }
         navigationController?.pushViewController(vc, animated: true)
     }
 
