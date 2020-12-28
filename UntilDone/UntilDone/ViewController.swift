@@ -4,12 +4,26 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet var tableView: UITableViewDataSource!
+    @IBOutlet var tableView: UITableView!
     
     var tasks = [String]()
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
+        self.title = "Tasks"
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        // Setup  (initial saving mechanism)
+        
+        if !UserDefaults().bool(forKey: "setup"){
+            UserDefaults().set(true, forKey: "setup")
+            UserDefaults().set(0, forKey: "count")
+        }
+        
 
         //Get all current saved tasks
     }

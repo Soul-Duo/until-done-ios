@@ -13,8 +13,9 @@ class EntryViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         field.delegate = self
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveTask))
 
     }
     
@@ -25,7 +26,14 @@ class EntryViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    @IBAction func saveTask(){
+    @objc func saveTask(){
+        
+        //just return if text field is empty
+        guard let text = field.text, !text.isEmpty else{
+            return
+        }
+        
+        
         
     }
 
