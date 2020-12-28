@@ -2,7 +2,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController{
     
     @IBOutlet var tableView: UITableView!
     
@@ -95,6 +95,10 @@ extension ViewController: UITableViewDataSource{
         
         return cell
     }
-      
-    
+}
+
+struct MyReminder{
+    let title: String
+    let data: Date
+    let identifier: String
 }
