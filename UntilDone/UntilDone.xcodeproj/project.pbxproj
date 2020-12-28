@@ -14,6 +14,7 @@
 		0AFFE1DE2599AE89008C6305 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AFFE1DD2599AE89008C6305 /* Assets.xcassets */; };
 		0AFFE1E12599AE89008C6305 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AFFE1DF2599AE89008C6305 /* LaunchScreen.storyboard */; };
 		0AFFE1EE2599C38F008C6305 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFE1ED2599C38F008C6305 /* EntryViewController.swift */; };
+		0AFFE1F12599C3D2008C6305 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFFE1F02599C3D2008C6305 /* TaskViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		0AFFE1E02599AE89008C6305 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0AFFE1E22599AE89008C6305 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0AFFE1ED2599C38F008C6305 /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
+		0AFFE1F02599C3D2008C6305 /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				0AFFE1DF2599AE89008C6305 /* LaunchScreen.storyboard */,
 				0AFFE1E22599AE89008C6305 /* Info.plist */,
 				0AFFE1ED2599C38F008C6305 /* EntryViewController.swift */,
+				0AFFE1F02599C3D2008C6305 /* TaskViewController.swift */,
 			);
 			path = UntilDone;
 			sourceTree = "<group>";
@@ -142,6 +145,7 @@
 			files = (
 				0AFFE1D92599AE86008C6305 /* ViewController.swift in Sources */,
 				0AFFE1EE2599C38F008C6305 /* EntryViewController.swift in Sources */,
+				0AFFE1F12599C3D2008C6305 /* TaskViewController.swift in Sources */,
 				0AFFE1D52599AE86008C6305 /* AppDelegate.swift in Sources */,
 				0AFFE1D72599AE86008C6305 /* SceneDelegate.swift in Sources */,
 			);
