@@ -21,6 +21,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        //print(Realm.Configuration.defaultConfiguration.fileURL)
         
         data = realm.objects(ToDoListItem.self).map({$0})             //will return all ToDoListItems
         
@@ -29,13 +30,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         table.delegate = self
         table.dataSource = self
-        
-        // Setup  (initial saving mechanism)
-        if !UserDefaults().bool(forKey: "setup"){
-            UserDefaults().set(true, forKey: "setup")
-            UserDefaults().set(0, forKey: "count")
         }
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

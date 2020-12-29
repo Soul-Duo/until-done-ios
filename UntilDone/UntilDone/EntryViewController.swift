@@ -37,7 +37,7 @@ class EntryViewController: UIViewController, UITextFieldDelegate {
             
             realm.beginWrite()
             
-            let newItem = ToDoListItem()
+            let newItem = ToDoListItem()        //create new object
             newItem.date = date
             newItem.item = text
             realm.add(newItem)
