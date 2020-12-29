@@ -4,21 +4,27 @@
 //
 //  Created by Kevin Kim on 2020/12/28.
 //
-
+import RealmSwift
 import UIKit
 
 class EntryViewController: UIViewController, UITextFieldDelegate {
     
-    @IBOutlet var field: UITextField!
+    @IBOutlet var textfield: UITextField!
+    @IBOutlet var datePicker: UIDatePicker!
     
-    var update: (() -> Void)?
-
+    private let realm = try! Realm()
+    
+    var update: (() -> Void)?       //completion handler
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-        field.delegate = self
+        
+        textfield.becomeFirstResponder()
+        textfield.delegate = self
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveTask))
-
+        
     }
     
     //function called once the user hits the return key on the keyboard
@@ -31,7 +37,7 @@ class EntryViewController: UIViewController, UITextFieldDelegate {
     @objc func saveTask(){
         
         //just return if text field is empty
-        guard let text = field.text, !text.isEmpty else{
+        guard let text = textfield.text, !text.isEmpty else{
             return
         }
         
@@ -49,6 +55,6 @@ class EntryViewController: UIViewController, UITextFieldDelegate {
         navigationController?.popViewController(animated: true)
         
     }
-
-
+    
+    
 }

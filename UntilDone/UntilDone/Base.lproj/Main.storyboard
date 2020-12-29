@@ -48,7 +48,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="tableView" destination="SjL-Ki-hDN" id="9kP-bY-rlb"/>
+                        <outlet property="table" destination="SjL-Ki-hDN" id="9kP-bY-rlb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -104,17 +104,25 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="lFQ-2y-Yz9">
+                                <rect key="frame" x="0.0" y="166" width="414" height="696"/>
+                            </datePicker>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="eOe-yh-yNO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="lFQ-2y-Yz9" firstAttribute="trailing" secondItem="eOe-yh-yNO" secondAttribute="trailing" id="JmD-e9-dfr"/>
                             <constraint firstItem="eOe-yh-yNO" firstAttribute="trailing" secondItem="aT6-S1-IJ6" secondAttribute="trailing" constant="20" id="NBB-da-vxO"/>
                             <constraint firstItem="aT6-S1-IJ6" firstAttribute="top" secondItem="eOe-yh-yNO" secondAttribute="top" constant="20" id="WRF-d5-WZW"/>
+                            <constraint firstItem="lFQ-2y-Yz9" firstAttribute="top" secondItem="aT6-S1-IJ6" secondAttribute="bottom" constant="50" id="gZn-Aa-ZOY"/>
+                            <constraint firstItem="lFQ-2y-Yz9" firstAttribute="leading" secondItem="eOe-yh-yNO" secondAttribute="leading" id="lUY-ow-lGy"/>
+                            <constraint firstItem="eOe-yh-yNO" firstAttribute="bottom" secondItem="lFQ-2y-Yz9" secondAttribute="bottom" id="nZT-GW-ceo"/>
                             <constraint firstItem="aT6-S1-IJ6" firstAttribute="leading" secondItem="eOe-yh-yNO" secondAttribute="leading" constant="20" id="wRW-Vw-3Hc"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="field" destination="aT6-S1-IJ6" id="Mdn-CB-mho"/>
+                        <outlet property="datePicker" destination="lFQ-2y-Yz9" id="Lgh-un-Luj"/>
+                        <outlet property="textfield" destination="aT6-S1-IJ6" id="Mdn-CB-mho"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G4Z-1v-e1P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

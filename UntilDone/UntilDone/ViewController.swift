@@ -1,32 +1,61 @@
 //  ViewController.swift
 
 import UIKit
+import RealmSwift
 
-class ViewController: UIViewController {
+class ToDoListItem: Object{
     
-    @IBOutlet var tableView: UITableView!
+    @objc dynamic var item: String = ""
+    @objc dynamic var date: Date = Date()
+    
+}
+
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+    
+    @IBOutlet var table: UITableView!
     
     var tasks = [String]()
-
+    var data = [ToDoListItem]()
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
         self.title = "Until Done"
         
-        tableView.delegate = self
-        tableView.dataSource = self
+        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        table.delegate = self
+        table.dataSource = self
         
         // Setup  (initial saving mechanism)
-        
         if !UserDefaults().bool(forKey: "setup"){
             UserDefaults().set(true, forKey: "setup")
             UserDefaults().set(0, forKey: "count")
         }
         
-
-        //Get all current saved tasks
+        //Get all current saved tasks 
         updateTasks()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return data.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
+        cell.textLabel?.text = data[indexPath.row].item         //구조체 사용
+        
+        return cell
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        //Open the screen where we can see item info and delete
+         
     }
     
     func updateTasks(){
@@ -46,7 +75,8 @@ class ViewController: UIViewController {
             }
         }
         
-        tableView.reloadData()
+        table.reloadData()
+        
     }
     
     
@@ -63,38 +93,6 @@ class ViewController: UIViewController {
         }
         navigationController?.pushViewController(vc, animated: true)
     }
-
-
-}
-
-
-extension ViewController: UITableViewDelegate{
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        let vc = storyboard?.instantiateViewController(identifier: "task") as! TaskViewController
-        vc.title = "New Task"
-        vc.task = tasks[indexPath.row]
-        navigationController?.pushViewController(vc, animated: true)
-    }
-}
-
-extension ViewController: UITableViewDataSource{
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tasks.count
-    }
-    
-    //return cell for the given row
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        
-        cell.textLabel?.text = tasks[indexPath.row]
-        
-        return cell
-    }
-      
     
 }
