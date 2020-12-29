@@ -14,12 +14,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet var table: UITableView!
     
-    var tasks = [String]()
+    //var tasks = [String]()
     var data = [ToDoListItem]()
+    let realm = try! Realm()
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        data = realm.objects(ToDoListItem.self).map({$0})             //will return all ToDoListItems
         
         self.title = "Until Done"
         
@@ -33,8 +36,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             UserDefaults().set(0, forKey: "count")
         }
         
-        //Get all current saved tasks 
-        updateTasks()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -55,44 +56,36 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.deselectRow(at: indexPath, animated: true)
         
         //Open the screen where we can see item info and delete
-         
-    }
-    
-    func updateTasks(){
-        
-        //removes task array so we don't see duplicates everytime we call updateTasks()
-        tasks.removeAll()
-        
-        guard let count = UserDefaults().value(forKey: "count") as? Int else{
+        let item = data[indexPath.row]
+        guard let vc = storyboard?.instantiateViewController(identifier: "task") as? TaskViewController else{
             return
         }
         
-        for x in 0..<count{
-            
-            //if not empty
-            if let task = UserDefaults().value(forKey: "task_\(x+1)") as? String{
-                tasks.append(task)
-            }
+        vc.item = item
+        vc.deletionHandler = { [weak self] in
+            self?.refresh()
         }
-        
-        table.reloadData()
-        
+        vc.navigationItem.largeTitleDisplayMode = .never
+        vc.title = item.item
+        navigationController?.pushViewController(vc, animated: true)
     }
-    
-    
-    @IBAction func didTapAdd(){
+
+    @IBAction func didTapAddButton(){
         
         let vc = storyboard?.instantiateViewController(identifier: "entry") as! EntryViewController
         vc.title = "New Task"
         //"update" is a function in EntryViewController
         //Everytime we call update() in EntryVC, the table view needs to reload (refetch tasks saved)
-        vc.update = {
-            DispatchQueue.main.async {
-                self.updateTasks()
-            }
+        vc.completionHandler = { [weak self] in
+            self?.refresh()
         }
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    func refresh(){
+        
+        data = realm.objects(ToDoListItem.self).map({$0})
+        table.reloadData()
+    }
     
 }

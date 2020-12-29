@@ -9,6 +9,21 @@
     </dependencies>
     <scenes>
         <!--View Controller-->
+        <scene sceneID="JcL-ld-Eip">
+            <objects>
+                <viewController id="qel-Ec-KlW" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="i6c-JX-Xv5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Ep9-vt-32E"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b2S-gA-IdT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="936" y="-599"/>
+        </scene>
+        <!--To Do List-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="UntilDone" customModuleProvider="target" sceneMemberID="viewController">
@@ -40,10 +55,10 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="SjL-Ki-hDN" secondAttribute="bottom" id="hOi-yF-ugW"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="JWI-uI-ApB">
-                        <barButtonItem key="rightBarButtonItem" title="Add" id="9Vj-Uo-bjd">
+                    <navigationItem key="navigationItem" title="To Do List" largeTitleDisplayMode="always" id="JWI-uI-ApB">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="9Vj-Uo-bjd">
                             <connections>
-                                <action selector="didTapAdd" destination="BYZ-38-t0r" id="U9z-yt-H6S"/>
+                                <action selector="didTapAddButton" destination="BYZ-38-t0r" id="U9z-yt-H6S"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -63,8 +78,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1TG-gc-x0f">
-                                <rect key="frame" x="12" y="56" width="390" height="794"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PWL-hl-kWa">
+                                <rect key="frame" x="20" y="64" width="374" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="JIN-fR-WcF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfH-bH-QS4">
+                                <rect key="frame" x="20" y="144" width="374" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="va1-YR-thh"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -73,14 +100,17 @@
                         <viewLayoutGuide key="safeArea" id="nIR-wA-ubT"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="1TG-gc-x0f" firstAttribute="top" secondItem="nIR-wA-ubT" secondAttribute="top" constant="12" id="2zG-lN-pWp"/>
-                            <constraint firstItem="nIR-wA-ubT" firstAttribute="trailing" secondItem="1TG-gc-x0f" secondAttribute="trailing" constant="12" id="CdQ-Ww-77o"/>
-                            <constraint firstItem="nIR-wA-ubT" firstAttribute="bottom" secondItem="1TG-gc-x0f" secondAttribute="bottom" constant="12" id="OHe-jI-whi"/>
-                            <constraint firstItem="1TG-gc-x0f" firstAttribute="leading" secondItem="nIR-wA-ubT" secondAttribute="leading" constant="12" id="um0-1b-6v7"/>
+                            <constraint firstItem="nIR-wA-ubT" firstAttribute="trailing" secondItem="hfH-bH-QS4" secondAttribute="trailing" constant="20" id="3hc-Y6-n46"/>
+                            <constraint firstItem="nIR-wA-ubT" firstAttribute="trailing" secondItem="PWL-hl-kWa" secondAttribute="trailing" constant="20" id="5br-H9-zPt"/>
+                            <constraint firstItem="PWL-hl-kWa" firstAttribute="leading" secondItem="nIR-wA-ubT" secondAttribute="leading" constant="20" id="9x0-z0-DO5"/>
+                            <constraint firstItem="PWL-hl-kWa" firstAttribute="top" secondItem="nIR-wA-ubT" secondAttribute="top" constant="20" id="dnn-On-lAN"/>
+                            <constraint firstItem="hfH-bH-QS4" firstAttribute="leading" secondItem="nIR-wA-ubT" secondAttribute="leading" constant="20" id="dsl-NP-lsm"/>
+                            <constraint firstItem="hfH-bH-QS4" firstAttribute="top" secondItem="PWL-hl-kWa" secondAttribute="bottom" constant="10" id="idz-tq-qPj"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="label" destination="1TG-gc-x0f" id="ntC-lQ-W6G"/>
+                        <outlet property="dateLabel" destination="hfH-bH-QS4" id="G9m-S4-KkP"/>
+                        <outlet property="itemLabel" destination="PWL-hl-kWa" id="6JQ-lx-EAm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FfF-rf-Aa6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -104,25 +134,22 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="lFQ-2y-Yz9">
-                                <rect key="frame" x="0.0" y="166" width="414" height="696"/>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="hnp-qY-gTy">
+                                <rect key="frame" x="0.0" y="215" width="414" height="162"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </datePicker>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="eOe-yh-yNO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="lFQ-2y-Yz9" firstAttribute="trailing" secondItem="eOe-yh-yNO" secondAttribute="trailing" id="JmD-e9-dfr"/>
                             <constraint firstItem="eOe-yh-yNO" firstAttribute="trailing" secondItem="aT6-S1-IJ6" secondAttribute="trailing" constant="20" id="NBB-da-vxO"/>
                             <constraint firstItem="aT6-S1-IJ6" firstAttribute="top" secondItem="eOe-yh-yNO" secondAttribute="top" constant="20" id="WRF-d5-WZW"/>
-                            <constraint firstItem="lFQ-2y-Yz9" firstAttribute="top" secondItem="aT6-S1-IJ6" secondAttribute="bottom" constant="50" id="gZn-Aa-ZOY"/>
-                            <constraint firstItem="lFQ-2y-Yz9" firstAttribute="leading" secondItem="eOe-yh-yNO" secondAttribute="leading" id="lUY-ow-lGy"/>
-                            <constraint firstItem="eOe-yh-yNO" firstAttribute="bottom" secondItem="lFQ-2y-Yz9" secondAttribute="bottom" id="nZT-GW-ceo"/>
                             <constraint firstItem="aT6-S1-IJ6" firstAttribute="leading" secondItem="eOe-yh-yNO" secondAttribute="leading" constant="20" id="wRW-Vw-3Hc"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="datePicker" destination="lFQ-2y-Yz9" id="Lgh-un-Luj"/>
-                        <outlet property="textfield" destination="aT6-S1-IJ6" id="Mdn-CB-mho"/>
+                        <outlet property="datePicker" destination="hnp-qY-gTy" id="Epn-We-Krc"/>
+                        <outlet property="textField" destination="aT6-S1-IJ6" id="Mdn-CB-mho"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G4Z-1v-e1P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -134,8 +161,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uSt-Dq-xHn" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FTP-I0-jdb">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="FTP-I0-jdb">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

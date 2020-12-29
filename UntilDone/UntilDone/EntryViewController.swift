@@ -1,60 +1,54 @@
-//
-//  EntryViewController.swift
-//  UntilDone
-//
-//  Created by Kevin Kim on 2020/12/28.
-//
 import RealmSwift
 import UIKit
 
 class EntryViewController: UIViewController, UITextFieldDelegate {
     
-    @IBOutlet var textfield: UITextField!
+    @IBOutlet var textField: UITextField!
     @IBOutlet var datePicker: UIDatePicker!
     
-    private let realm = try! Realm()
+    private let realm = try! Realm()        //reference to the DB
     
-    var update: (() -> Void)?       //completion handler
+    var completionHandler: (() -> Void)?    
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        textfield.becomeFirstResponder()
-        textfield.delegate = self
+        textField.becomeFirstResponder()
+        textField.delegate = self
+        datePicker.setDate(Date(), animated: true)  //defaults date to today
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveTask))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(didTapSaveButton))
         
     }
     
     //function called once the user hits the return key on the keyboard
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        saveTask()
+        textField.resignFirstResponder()        //gets rid of the keyboard
         return true
     }
     
-    @objc func saveTask(){
+    @objc func didTapSaveButton(){
         
-        //just return if text field is empty
-        guard let text = textfield.text, !text.isEmpty else{
-            return
+        if let text = textField.text, !text.isEmpty {
+            
+            let date = datePicker.date
+            
+            realm.beginWrite()
+            
+            let newItem = ToDoListItem()
+            newItem.date = date
+            newItem.item = text
+            realm.add(newItem)
+            
+            try! realm.commitWrite()
+            
+            completionHandler?()
+            navigationController?.popToRootViewController(animated: true)
         }
-        
-        guard let count = UserDefaults().value(forKey: "count") as? Int else{
-            return
+        else{
+            print("Add something")
         }
-        
-        let newCount = count + 1
-        
-        UserDefaults().set(newCount, forKey: "count")
-        UserDefaults().set(text, forKey: "task_\(newCount)")    //each key for saved task will be unique
-        
-        update?()
-        
-        navigationController?.popViewController(animated: true)
-        
     }
-    
-    
 }
